@@ -13,7 +13,7 @@
         }
         div {
             background-color:gray;
-            padding: 5px;
+            margin: 5px;
         }
         #v {
             margin:0;
@@ -30,6 +30,32 @@
         @csrf
         <button>Log out</button>
     </form>
+    <div>
+        <h2>Create new post</h2>
+        <form action="/create-post" method="POST">
+            @csrf
+            <input name="title" type="text" placeholder="title">
+            <textarea name="body" placeholder="The most insane article goes here 0_0"></textarea>
+            <button>DO THE POST</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>ALL POSTS</h2>
+        @foreach($posts as $post)
+        <div>
+            <h3>{{$post['title']}} by:{{$post->user->name}}</h3>
+            {{$post['body']}}
+            <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
+            <form action="/delete-post/{{$post->id}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button>Delete</button>
+            </form>
+        </div>
+        @endforeach
+    </div>
+
     @else
     <div>
         <h2>Registry</h2>
