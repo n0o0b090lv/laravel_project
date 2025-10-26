@@ -34,9 +34,9 @@
         <h2>Create new event</h2>
         <form action="/create-event" method="POST">
             @csrf
-            <input name="title" type="text" placeholder="title">
-            <textarea name="body" placeholder="The most insane event goes here 0_0"></textarea>
-            <input name="location" type="text" placeholder="location">
+            <input name="title" type="text" placeholder="Events title">
+            <textarea name="body" placeholder="The most insane event description goes here 0_0"></textarea>
+            <input name="location" type="text" placeholder="Events location">
             <input name="date" type="date" value="{{date('Y-m-d')}}">
             <input name="time" type="time" value="{{date('H:i:s')}}">
             <button>DO THE POST</button>
@@ -44,13 +44,16 @@
     </div>
 
     <div>
-        <h2>ALL POSTS</h2>
-        @foreach($posts as $post)
+        <h2>ALL EVENTS</h2>
+        @foreach($events as $event)
         <div>
-            <h3>{{$post['title']}} by:{{$post->user->name}}</h3>
-            {{$post['body']}}
-            <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
-            <form action="/delete-post/{{$post->id}}" method="post">
+            <h3>{{$event['title']}}</h3>
+            <h4>event from:{{$event->user->name}}</h4>
+            description: {{$event['body']}} <br>
+            location: {{$event['location']}} <br>
+            at: {{date("Y-m-d H:i:s", $event['time'])}}
+            <p><a href="/edit-post/{{$event->id}}">Edit</a></p>
+            <form action="/delete-post/{{$event->id}}" method="post">
                 @csrf
                 @method('DELETE')
                 <button>Delete</button>

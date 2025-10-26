@@ -3,14 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeathToThisGuy;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\EventController;
 use App\Models\Post;
+use App\Models\Event;
 
 Route::get('/', function () {
-    $posts = [];
-    if(auth()->check()){
-        $posts = auth()->user()->userPosts()->latest()->get();
-    }
-    return view('myeyes', ['posts' => $posts]);
+    $events = Event::all();
+    return view('myeyes', ['events' => $events]);
 });
 
 Route::post('/register', [DeathToThisGuy::class, 'register']);
@@ -23,4 +22,5 @@ Route::get('/edit-post/{post}', [PostController::class, 'showEditScene']);
 Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
 Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
 
-Route::post('/create-event', [PostController::class, 'createPost']);
+//Events
+Route::post('/create-event', [EventController::class, 'createEvent']);

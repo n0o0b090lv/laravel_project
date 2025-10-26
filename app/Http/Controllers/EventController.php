@@ -3,8 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 class EventController extends Controller
 {
-    //
+    public function createEvent(Request $request) {
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'date' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+        ]);
+
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+        $incomingFields['date'] = strip_tags($incomingFields['date']);
+        $incomingFields['location'] = strip_tags($incomingFields['location']);
+        $incomingFields['time'] = strip_tags($incomingFields['time']);
+        $incomingFields['user_id'] = auth()->id();
+        Event::create($incomingFields);
+        return redirect('/');
+    }
 }
