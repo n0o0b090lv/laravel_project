@@ -31,11 +31,14 @@
         <button>Log out</button>
     </form>
     <div>
-        <h2>Create new post</h2>
-        <form action="/create-post" method="POST">
+        <h2>Create new event</h2>
+        <form action="/create-event" method="POST">
             @csrf
             <input name="title" type="text" placeholder="title">
-            <textarea name="body" placeholder="The most insane article goes here 0_0"></textarea>
+            <textarea name="body" placeholder="The most insane event goes here 0_0"></textarea>
+            <input name="location" type="text" placeholder="location">
+            <input name="date" type="date" value="{{date('Y-m-d')}}">
+            <input name="time" type="time" value="{{date('H:i:s')}}">
             <button>DO THE POST</button>
         </form>
     </div>
