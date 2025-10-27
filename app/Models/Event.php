@@ -9,7 +9,7 @@ class Event extends Model
 {
     use HasFactory;    
     protected $table = 'event';
-    protected $fillable = ['title', 'body', 'date', 'location', 'user_id'];
+    protected $fillable = ['title', 'body', 'happen_date', 'location', 'user_id'];
     
     public function user(){
         return $this->belongsTo(User::class, 'user_id');

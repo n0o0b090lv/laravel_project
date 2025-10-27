@@ -15,16 +15,15 @@ class EventController extends Controller
         $incomingFields = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'date' => 'required',
+            'happen_date' => 'required',
             'location' => 'required',
             'time' => 'required',
         ]);
 
         $incomingFields['title'] = strip_tags($incomingFields['title']);
         $incomingFields['body'] = strip_tags($incomingFields['body']);
-        $incomingFields['date'] = strip_tags($incomingFields['date']);
+        $incomingFields['happen_date'] = strip_tags($incomingFields['happen_date']);
         $incomingFields['location'] = strip_tags($incomingFields['location']);
-        $incomingFields['time'] = strip_tags($incomingFields['time']);
         $incomingFields['user_id'] = auth()->id();
 
         $event->update($incomingFields);
@@ -40,17 +39,16 @@ class EventController extends Controller
         $incomingFields = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'date' => 'required',
+            'happen_date' => 'required',
             'location' => 'required',
-            'time' => 'required',
         ]);
 
         $incomingFields['title'] = strip_tags($incomingFields['title']);
         $incomingFields['body'] = strip_tags($incomingFields['body']);
-        $incomingFields['date'] = strip_tags($incomingFields['date']);
         $incomingFields['location'] = strip_tags($incomingFields['location']);
-        $incomingFields['time'] = strip_tags($incomingFields['time']);
+        $incomingFields['happen_date'] = strip_tags($incomingFields['happen_date']);
         $incomingFields['user_id'] = auth()->id();
+        
         Event::create($incomingFields);
         return redirect('/');
     }

@@ -37,8 +37,7 @@
             <input name="title" type="text" placeholder="Events title">
             <textarea name="body" placeholder="The most insane event description goes here 0_0"></textarea>
             <input name="location" type="text" placeholder="Events location">
-            <input name="date" type="date" value="{{date('Y-m-d')}}">
-            <input name="time" type="time" value="{{date('H:i:s')}}">
+            <input name="happen_date" type="datetime-local">
             <button>DO THE EVENT</button>
         </form>
     </div>
