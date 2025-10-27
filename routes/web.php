@@ -24,3 +24,5 @@ Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
 
 //Events
 Route::post('/create-event', [EventController::class, 'createEvent']);
+Route::get('/edit-event/{event}', [EventController::class, 'showEditScene']);
+Route::put('/edit-event/{event}', [EventController::class, 'updateEvent']);

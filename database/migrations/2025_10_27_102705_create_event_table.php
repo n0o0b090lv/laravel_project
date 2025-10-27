@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->longText('body');
-            $table->date('date');
+            $table->timestamp('happen_date');
             $table->tinytext('location');
             $table->foreignId('user_id')->constrained();
         });

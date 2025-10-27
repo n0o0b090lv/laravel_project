@@ -39,7 +39,7 @@
             <input name="location" type="text" placeholder="Events location">
             <input name="date" type="date" value="{{date('Y-m-d')}}">
             <input name="time" type="time" value="{{date('H:i:s')}}">
-            <button>DO THE POST</button>
+            <button>DO THE EVENT</button>
         </form>
     </div>
 
