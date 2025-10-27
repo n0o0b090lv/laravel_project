@@ -25,7 +25,7 @@
     </style>
     <h1>MY EYES AHHHHHss</h1>
     @auth
-    <h1>Hello back :DD</h1>
+    <h1>Hello back :DD {{new dateTime()->getTimestamp()}}</h1>
     <form action="/logout" method="post">
         @csrf
         <button>Log out</button>
@@ -50,7 +50,7 @@
             <h4>event from:{{$event->user->name}}</h4>
             description: {{$event['body']}} <br>
             location: {{$event['location']}} <br>
-            at: {{date("Y-m-d H:i:s", $event['time'])}}
+            at: {{date("d/m/yy H:i A", strtotime($event['happen_date']))}}
             <?php if (auth()->id() == $event->user_id) {?>
                 <p><a href="/edit-event/{{$event->id}}">Edit details</a></p>
             <?php } else {?>

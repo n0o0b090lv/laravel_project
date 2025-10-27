@@ -7,14 +7,13 @@
 </head>
 <body>
     <h1>Edit event</h1>
-    <form action="/edit-event/{{$event->id}}" method="event">
+    <form action="/edit-event/{{$event->id}}" method="post">
         @csrf
         @method('PUT')
         <input name="title" type="text" value="{{$event->title}}">
-        <textarea name="body" value="{{$event->body}}"></textarea>
+        <textarea name="body">{{$event->body}}</textarea>
         <input name="location" type="text" value="{{$event->location}}">
-        <input name="date" type="date" value="{{$event->date}}">
-        <input name="time" type="time" value="{{$event->time}}">
+        <input name="happen_date" type="datetime-local" value="{{$event->happen_date}}">
         <button>Save changes</button>
     </form>
 </body>

@@ -7,6 +7,12 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
+    public function deleteEvent(Post $event){
+        if (auth()->user()->id === $event['user_id']) {
+            $event->delete();
+        }
+        return redirect('/');
+    }
     public function updateEvent(Event $event, Request $request) {
         if (auth()->user()->id !== $event['user_id']) {
             return redirect('/');
@@ -17,13 +23,12 @@ class EventController extends Controller
             'body' => 'required',
             'happen_date' => 'required',
             'location' => 'required',
-            'time' => 'required',
         ]);
 
         $incomingFields['title'] = strip_tags($incomingFields['title']);
         $incomingFields['body'] = strip_tags($incomingFields['body']);
-        $incomingFields['happen_date'] = strip_tags($incomingFields['happen_date']);
         $incomingFields['location'] = strip_tags($incomingFields['location']);
+        $incomingFields['happen_date'] = strip_tags($incomingFields['happen_date']);
         $incomingFields['user_id'] = auth()->id();
 
         $event->update($incomingFields);
