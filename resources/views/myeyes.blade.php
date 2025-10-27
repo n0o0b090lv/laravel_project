@@ -51,11 +51,12 @@
             <h4>event from:{{$event->user->name}}</h4>
             description: {{$event['body']}} <br>
             location: {{$event['location']}} <br>
-            at: {{date("Y-m-d H:i:s", $event['time'])}} {{$event->id}}
-            <?php if (auth()->id() == $event->id) {?>
-                <p><a href="/edit-post/{{$event->id}}">Edit</a></p>
+            at: {{date("Y-m-d H:i:s", $event['time'])}}
+            <?php if (auth()->id() == $event->user_id) {?>
+                <p><a href="/edit-event/{{$event->id}}">Edit details</a></p>
+            <?php } else {?>
+                <p><a href="/subscirbe-event/{{$event->id}}" method="post">Subscribe</a></p>
             <?php }?>
-            <!-- <p><a href="/edit-post/{{$event->id}}">Edit</a></p> -->
             <form action="/delete-post/{{$event->id}}" method="post">
                 @csrf
                 @method('DELETE')
