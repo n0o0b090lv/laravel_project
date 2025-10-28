@@ -31,7 +31,11 @@
         <div class="bg-blue-500 text-shadow-red-500 text-shadow-2xs p-1 my-1">
             <h2 class="text-2xl font-bold">ALL EVENTS</h2>
             @foreach($events as $event)
+            <?php if (auth()->id() == $event->user_id) {?>
+            <div class="bg-red-600 p-5 my-1">
+            <?php } else {?>
             <div class="bg-blue-600 p-5 my-1">
+            <?php }?>
                 <h3 class="text-2xl font-bold">{{$event['title']}}</h3>
                 <h4 class="text-1xl font-bold">event from the one and only: {{$event->user->name}}</h4>
                 <p class="text-shadow-none">&emsp;{{$event['body']}}</p>
