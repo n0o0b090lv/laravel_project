@@ -7,7 +7,7 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
-    public function deleteEvent(Post $event){
+    public function deleteEvent(Event $event){
         if (auth()->user()->id === $event['user_id']) {
             $event->delete();
         }

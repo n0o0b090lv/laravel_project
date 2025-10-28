@@ -10,7 +10,8 @@ use App\Models\Event;
 
 Route::get('/', function () {
     $events = Event::all();
-    return view('myeyes', ['events' => $events]);
+    $sorted_events = $events->sortByDesc('happen_date');
+    return view('myeyes', ['events' => $sorted_events]);
 });
 
 Route::post('/register', [DeathToThisGuy::class, 'register']);
@@ -30,4 +31,4 @@ Route::put('/edit-event/{event}', [EventController::class, 'updateEvent']);
 Route::delete('/delete-event/{event}', [EventController::class, 'deleteEvent']);
 
 //Subscribers
-Route::post('/subscribe', [SubscriberController::class, 'subscribe']);
+Route::post('/subscribe/{event}', [SubscriberController::class, 'subscribe']);

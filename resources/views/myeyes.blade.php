@@ -25,7 +25,7 @@
     </style>
     <h1>MY EYES AHHHHHss</h1>
     @auth
-    <h1>Hello back :DD {{new dateTime()->getTimestamp()}}</h1>
+    <h1>Hello back {{auth()->user()->name}} :DD</h1>
     <form action="/logout" method="post">
         @csrf
         <button>Log out</button>
@@ -53,14 +53,17 @@
             at: {{date("d/m/yy H:i A", strtotime($event['happen_date']))}}
             <?php if (auth()->id() == $event->user_id) {?>
                 <p><a href="/edit-event/{{$event->id}}">Edit details</a></p>
+                <form action="/delete-event/{{$event->id}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button>Delete</button>
+                </form>
             <?php } else {?>
-                <p><a href="/subscribe/{{$event->id}}" method="post">Subscribe</a></p>
+                <form action="/subscribe/{{$event->id}}" method="post">
+                    @csrf
+                    <button>Subscribe</button>
+                </form>
             <?php }?>
-            <form action="/delete-post/{{$event->id}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button>Delete</button>
-            </form>
         </div>
         @endforeach
     </div>
