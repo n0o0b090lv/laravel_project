@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subscribe extends Model
 {
     use HasFactory;    
-    protected $table = 'subscriber';
+    protected $table = 'subscribers';
     protected $fillable = ['user_id', 'event_id'];
     
     public function event(){
