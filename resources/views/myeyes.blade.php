@@ -54,7 +54,7 @@
             <?php if (auth()->id() == $event->user_id) {?>
                 <p><a href="/edit-event/{{$event->id}}">Edit details</a></p>
             <?php } else {?>
-                <p><a href="/subscirbe-event/{{$event->id}}" method="post">Subscribe</a></p>
+                <p><a href="/subscribe/{{$event->id}}" method="post">Subscribe</a></p>
             <?php }?>
             <form action="/delete-post/{{$event->id}}" method="post">
                 @csrf
