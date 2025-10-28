@@ -10,7 +10,7 @@ class SubscriberController extends Controller
 {
     public function subscribe(Event $event, Request $request) {
         if (auth()->user()->id !== $event['user_id']) {
-            $saveResult['table_id'] = $event->id;
+            $saveResult['event_id'] = $event['id'];
             $saveResult['user_id'] = auth()->id();
             Subscribe::create($saveResult);
         }

@@ -9,10 +9,10 @@ class Subscribe extends Model
 {
     use HasFactory;    
     protected $table = 'subscriber';
-    protected $fillable = ['user_id', 'table_id'];
+    protected $fillable = ['user_id', 'event_id'];
     
     public function event(){
-        return $this->belongsTo(Event::class, 'table_id');
+        return $this->belongsTo(Event::class, 'event_id');
     }
 
     public function user(){
