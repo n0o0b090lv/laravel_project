@@ -31,4 +31,4 @@ Route::put('/edit-event/{event}', [EventController::class, 'updateEvent']);
 Route::delete('/delete-event/{event}', [EventController::class, 'deleteEvent']);
 
 //Subscribers
-Route::post('/subscribe/{event}', [SubscriberController::class, 'subscribe']);
+// Route::post('/subscribe/{event}', [SubscriberController::class, 'subscribe']);

@@ -4,33 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    @vite('resources\css\app.css')
+    <link rel="stylesheet" href="css/style.css" />
 </head>
-<body id="v">
-    <style>
-        * {
-            color:black;
-            background-color:white  ;
-        }
-        div {
-            background-color:gray;
-            margin: 5px;
-        }
-        #v {
-            margin:0;
-            padding: 10px;
-            width: calc(100vw - 20px);
-            height: calc(100vh - 20px);
-            background-color:black;
-        }
-    </style>
-    <h1>MY EYES AHHHHHss</h1>
+<body class="flex flex-col bg-black text-white p-10">
+    <h1 class="text-5xl font-bold text-shadow-red-500 text-shadow-2xs">MY EYES AHHHHHss</h1>
     @auth
-    <h1>Hello back {{auth()->user()->name}} :DD</h1>
-    <form action="/logout" method="post">
-        @csrf
-        <button>Log out</button>
-    </form>
     <div>
+        <h1>Hello back {{auth()->user()->name}} :DD</h1>
+        <form action="/logout" method="post">
+            @csrf
+            <button>Log out</button>
+    </div>
+    </form>
+    <div class="bg-red-500 text-shadow-blue-500 text-shadow-2xs p-1">
         <h2>Create new event</h2>
         <form action="/create-event" method="POST">
             @csrf
@@ -42,7 +29,7 @@
         </form>
     </div>
 
-    <div>
+    <div class="bg-blue-500 text-shadow-red-500 text-shadow-2xs p-1">
         <h2>ALL EVENTS</h2>
         @foreach($events as $event)
         <div>
@@ -58,34 +45,29 @@
                     @method('DELETE')
                     <button>Delete</button>
                 </form>
-            <?php } else {?>
-                <form action="/subscribe/{{$event->id}}" method="post">
-                    @csrf
-                    <button>Subscribe</button>
-                </form>
             <?php }?>
         </div>
         @endforeach
     </div>
 
     @else
-    <div>
-        <h2>Registry</h2>
+    <div class="bg-red-500 text-shadow-blue-500 text-shadow-2xs p-1">
+        <h2 class="text-3xl font-bold">Registry</h2>
         <form action="/register" method="POST">
             @csrf
-            <input name="name" type="text" placeholder="name">
-            <input name="email" type="text" placeholder="email">
-            <input type="password" placeholder="password" name="password">
-            <button>Register</button>
+            <input name="name" type="text" placeholder="name" class="border">
+            <input name="email" type="text" placeholder="email" class="border">
+            <input type="password" placeholder="password" name="password" class="border">
+            <button class="border">Register</button>
         </form>
     </div>
-    <div>
-        <h2>Login</h2>
+    <div class="bg-blue-500 text-shadow-red-500 text-shadow-2xs my-1 p-1">
+        <h2 class="text-3xl font-bold">Login</h2>
         <form action="/login" method="POST">
             @csrf
-            <input name="login_name" type="text" placeholder="name">
-            <input name="login_password" type="password" placeholder="password">
-            <button>Login</button>
+            <input name="login_name" type="text" placeholder="name" class="border"> 
+            <input name="login_password" type="password" placeholder="password" class="border">
+            <button class="border">Login</button>
         </form>
     </div>
     @endauth
